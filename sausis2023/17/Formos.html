@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formos</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        form {
+            width: 400px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+        }
+        .divider {
+            margin-bottom: 0.5rem;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        input[type="email"],
+        input[type="datetime-local"],
+        input[type="password"],
+        select,
+        textarea {
+            width: 100%;
+            background-color: rgb(194, 188, 188);
+            border: 1px solid rgb(78, 78, 78);
+            padding: .3rem .5rem;
+        }
+        .alignitems-label {
+            display: inline;
+        }
+        input[type="range"] {
+            width: 100%;
+        }
+        textarea {
+            resize:none;
+            height: 400px;
+        }
+        textarea:focus {
+            border: 5px solid red;
+            outline: none;
+        }
+        a:visited {
+            color: red;
+        }
+        a:hover {
+            color: blue;
+            text-decoration: none;
+        }
+        a:active {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <div class="divider">
+            <label>ussername:</label>
+            <input type="text" placeholder="Vardas" required>
+        </div>
+        <div class="divider">
+            <label>age:</label>
+            <input type="number" min="18" max="80">
+        </div>
+        <div class="divider">
+            <label>
+                Iveskite Emaila
+                <input type="email" placeholder="Mishkas@ltu.lt">
+            </label>
+        <div class="divider">
+            <label>data:</label>
+            <input type="date" required>
+        </div>
+        <div class="divider">
+            <label>data ir laikas:</label>
+            <input type="datetime-local" required>
+        </div>
+        <div class="divider">
+            <label for="sutinku">Sutinku su taisyklemis
+                <input id="sutinku" type="checkbox" checked="checked">
+        <div class="divider">                
+            <label for="taip">Sutinku gauti reklamas
+                <input id="taip" type="checkbox" unchecked="unchecked">    
+            </label>
+        </div>
+        <div class="divider">
+            <!-- norint pasirinkti radio elemento atskirus taskus, butina nurodyti name="" atributa. -->
+            <!-- Tada leidzia pasirinkti atskirus variantus -->
+            <label>
+            <input type="radio" name="Produktai">
+            Obuoliai
+            </label>
+        </div>
+        <div class="divider">
+            <label>
+            <input type="radio" name="Produktai">
+            Bananai
+            </label>
+        </div>
+        <div class="divider">
+            <label>
+            <input type="radio" name="Produktai">
+            Apelsinai
+            </label>
+        </div>
+        <div class="divider">
+            <label>
+                Iveskite slaptazodi
+                <input type="password">
+            </label>
+        </div>
+        <div class="divider">
+            <label>
+                Pasirinkite spalva
+                <input type="color">
+            </label>
+        </div>
+        <div> class="divider"
+            <label>Idekite faila
+                <input type="file" >
+            </label>
+        </div>
+        <div class="divider">
+            <label>Pasirinkite atstuma</label>
+            <input type="range" min="0" max="100" value="0">
+        </div>
+        <div class="divider">
+            <input type="submit" value="siusti">
+            <button type="submit">Issiusti_v2</button>
+            <button type="reset">atstatyti/Istrinti</button>
+        </div>
+        <div class="divider">
+            <label>Pasirinkite Sali</label>
+            <select>
+                <option value="1">Airija</option>
+                <option value="2" selected="selected">Lietuva</option>
+                <option value="3">Amerika</option>
+                <option value="4">Kanada</option>
+            </select>
+        </div>
+        <div class="divider">
+            <textarea placeholder="Komentarai"></textarea>
+        </div>
+        <div class="divider">
+            <a href="https://google.com">Google</a>
+            <a href="https://delfi.lt">Delfi</a>
+            <a href="https://15min.lt">15.min</a>
+            <a href="https://gmail.com">Email</a>
+        </div>
+        <button>send</button>
+    </form>
+</body>
+</html>
