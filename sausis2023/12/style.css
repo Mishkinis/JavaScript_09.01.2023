@@ -71,6 +71,7 @@ ul {
 .pask-diena~li {
     opacity: .5!important;
     font-weight: 200!important;
+    line-height: 41px;
 }
 
 li:nth-child(7n) {
