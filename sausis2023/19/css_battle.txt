@@ -1,0 +1,64 @@
+<style>
+  body {
+    margin:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+.c {
+    position:relative;
+    width: 100px;
+    height: 100px;
+    background: #C36271;
+    overflow: hidden;
+    border-radius:100px;
+  }
+.s {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: #F2E09F;
+    margin-top: 50px;
+  }
+.my {
+    position: absolute;
+    width: 380px;
+    height: 50vh;
+    background: #F2E09F;
+    top: 0;
+    left: 0;
+    border-radius: 0 0 100px;
+  }
+.mp {
+    position: absolute;
+    width: 380px;
+    height: 50vh;
+    background: #C36271;
+    bottom: 0;
+    right: 0;
+    border-radius: 100px 0 0;
+  }
+.y {
+    position: absolute;
+    width: 150px;
+    height: 50vh;
+    background: #F2E09F;
+    bottom: 0;
+    left: 0;
+    }
+.p {
+    position: absolute;
+    width: 150px;
+    height: 50vh;
+    background: #C36271;
+    top: 0;
+    right: 0;
+    }
+</style>
+<div class="y"></div>
+<div class="p"></div>
+<div class="mp"></div>
+<div class="my"></div>
+<div class="c">
+  <div class="s"></div>
+</div>
