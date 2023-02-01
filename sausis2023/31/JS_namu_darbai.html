@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS_namu_darbai</title>
+</head>
+<body>
+    <script>
+        let name = "Tomas"
+        let surname = "Cruise"
+
+        if (name.length == surname.length) {
+            cinsole.log('Name and Surname are the same length');
+        }
+        else if (name.length > surname.length) {
+            console.log('Name is longer than Surname: ' + name);
+        }
+        else
+            console.log('Surname is longer than Name: ' + surname)
+    </script>
+    <script>
+        vardas = 'Tomas';
+        pavarde = 'Miškinis';
+        metai = 1992;
+        amzius = 2023 - metai;
+        console.log('Aš esu ' + vardas + ' ' + pavarde +'.Man yra ' + amzius + ' metai(ų).')
+    </script>
+    <script>
+        let vardas = "Leonardo"
+        let pavarde = "DiCaprio"
+        let lastChar = vardas.slice(-3) + pavarde.slice(-3)
+        console.log(lastChar)
+    </script>
+    <script>
+        let hollywood = "Once upon a time in Hollywood"
+        let change = hollywood.replaceAll('o' , '*').replace('O' , '*')
+        console.log(change)
+    </script>
+    <script>
+        function rand(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+        let a = rand(0, 2);
+        let b = rand(0, 2);
+        let c = rand(0, 2);
+        let d = rand(0, 2);
+        let x = 0;
+        let y = 0;
+        let z = 0;
+
+        if (a == 0) {
+            x++
+        }
+
+        if (b == 0) {
+            x++
+        }
+        if (c == 0) {
+            x++
+        }
+        if (d == 0) {
+            x++
+        }
+        if (a == 1) {
+            y++
+        }
+
+        if (b == 1) {
+            y++
+        }
+        if (c == 1) {
+            y++
+        }
+        if (d == 1) {
+            y++
+        }
+        if (a == 2) {
+            z++
+        }
+
+        if (b == 2) {
+            z++
+        }
+        if (c == 2) {
+            z++
+        }
+        if (d == 2) {
+            z++
+        }
+
+        console.log("Atsitiktiniai skaičiai: " + a + " " + b + " " + c + " " + d + ". " + "Nulių kiekis: " + x + " Vienetų kiekis: " + y + " Dvejetų kiekis: " + z)
+    </script>
+</body>
+</html>
