@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js_funkcijos</title>
+</head>
+<body>
+    <script>
+        //Math kintamasis jau yra pateikiams mums narsykles
+        //norint rasti didziausia skaiciu tarp isvardintu
+        let max = Math.max(15, 20, 11, 45, 22, 8, 88);
+        console.log(max)
+
+        //norint surasti maziausia skaiciu tarp isvardintu
+        let min = Math.min(15, 20, 11, 45, 22, 8, 88)
+        console.log(min);
+
+        //matematinis suapvalinimas iki sveiko skaiciaus
+        let skaicius = 3.34554161;
+        let round = Math.round(skaicius);
+        console.log('suapvalinimas naudojant round() metoda', round);
+
+        //apvalinimas iki mazesnio sveikojo skaiciaus
+        skaicius = 3.34554161;
+        let floor = Math.floor(skaicius);
+        console.log('suapvalinimas naudojant floor() metoda', floor);
+
+        //apvalinimas iki didesnio sveikojo skaiciaus
+        skaicius = 3.34554161;
+        let ceil = Math.ceil(skaicius);
+        console.log('suapvalinimas naudojant ceil() metoda', ceil);
+
+        //norint pasirinkti skaiciu kieki po kablelio
+        skaicius = 85.46543016846;
+        let fixed = skaicius.toFixed(4);
+        console.log('keturi skaiciai po kablelio naudojant toFixed() metoda', fixed);
+        
+        //Template literals stringu reiksmes
+        //norint ideti ${} turi rasyti pasvira kabute `
+        let Vardas = 'Tomas';
+        let Pavarde = 'Miškinis';
+        let metai = 1992;
+        let amzius = 2023 - metai;
+
+        let hello = `as esu ${Vardas} ${Pavarde}. Man yra ${amzius} metai`;
+        console.log (hello)
+    </script>
+</body>
+</html>

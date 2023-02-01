@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kondicine logika</title>
+</head>
+<body>
+    <script>
+        let x = 10
+
+        //riestiniu kslaustu deti nera butina, jei pagal salyga atliekamas tik vienos eilutes veiksmas
+        if(x === 10)
+            console.log('x yra lygu desimt');
+        else
+            console.og('x mera lygu desimt');
+        //su papildomais skliaustais gali det daug
+        if(x >= 10) {
+            console.log('x yra daugiau arba lygu desimt');
+
+            if(x === 11)
+            console.log('x yra lygu vienuolikai')
+        } else {
+            if(x > 5)
+            console.log('x yra maziau nei desimt, taciau daugiau nei 5');
+        }
+        //sauktukas tikrina ar turime neigiama reiksme ir jeigu taip grazina true atsakyma
+        //sauktukas sukeicia rezultata is teigiamo i neigiamas arba atvirksciai
+        //let blogai = false;
+        //console.log(!blogai);
+        let gerai = true
+        if(gerai) {
+            console.log('kintamas yra teigiamas')
+        }
+        
+        let nera = null;
+
+        if(!nera) {
+            console.log('reiksmes nera');
+        }
+
+        let nepriskirta = undefined;
+
+        if(!nepriskirta) {
+            console.log('reiksme nepriskirta')
+        }
+
+        let neigiamas = 0;
+
+        if(!neigiamas) {
+            console.log('reiksme yra neigiama');
+        }
+
+        //kondiciniu salygu sujungimas, loginiai operatoriai
+
+        let pirmasSkaicius = 20;
+        let antrasSkaicius = 16;
+        //OR operatorius zymimas || ir nusako, kad viena arba kita salyga turi tureti teigiama reiksme
+
+        if(pirmasSkaicius >= 20|| antrasSkaicius < 12) {
+            console.log('issipilde pirma arba antra salyga');
+        }
+
+        //AND operatorius zymimas && simboliais
+        //abi salygos turi buti true
+        if(pirmasSkaicius > 18 && antrasSkaicius > 15) {
+            console.log('issipilde abi salygos');
+        }
+    </script>
+</body>
+</html>
