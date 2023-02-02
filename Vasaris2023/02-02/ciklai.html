@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciklai</title>
+</head>
+<body>
+    <script>
+        //begalinis ciklas
+        //while(true) {
+        //    console.log('sukasi...')
+        //}
+
+        //while ciklas
+    let i = 0
+    let rezultatas = ''
+
+        while(i < 10) {
+            console.log('loading...', i)
+            if(i > 5)
+            rezultatas += `<li>${i}</li>`
+            i++
+        }
+
+        console.log(rezultatas)
+
+        //do while ciklas
+
+        i = 0
+        //while ciklas suveikia pirmiau todel nera rezultato nes 0 nera daugiau uz 1
+        // while(i > 1) {
+        //    console.log('ciklas suveike')
+        // }
+
+        do {
+            console.log('pirmas ciklas')
+        } while(i > 1)
+    </script>
+</body>
+</html>

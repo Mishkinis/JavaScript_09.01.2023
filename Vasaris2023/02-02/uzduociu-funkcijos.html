@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javaScript funkcijos</title>
+</head>
+<body>
+    <script>
+        let stringas = 'Once upon a time in Hollywood'
+
+        //startsWith() grazina teigiama arba neigiama atsakyma ar stringas prasideda ivardinta fraze
+        if(stringas.startsWith('Once')) {
+            console.log('stringas prasideda zodziu Once')
+        } else {
+            console.log('stringas neprasideda zodziu Once')
+        }
+
+        //endsWith() grazina teigiama arba neigiama atsakyma ar stringas baigiasi ivardinta fraze
+        if(stringas.endsWith('Hollywood')) {
+            console.log('stringas baigiasi zodziu Hollywood')
+        } else {
+            console.log('stringas nesibaigia zodziu Hollywood')
+        }
+
+        //includes() grazina teigiama arba neigiama atsakyma ar stringas yra sakinio viduryje
+        if(stringas.includes('time')) {
+            console.log('stringe yra zodis time')
+        } else {
+            console.log('stringe nera zodzio time')
+        }
+
+        //indexOf() grazina pozicija ties kuria prasideda arba yra patalpintas ieskomas zodis arba simbolis
+        console.log('pozicija ties kuria prasideda zodis "upon"', stringas.indexOf('upon'))
+
+        //lastIndexOf() grazina paskutine pozicija ties kuria prasideda arba yra patalpintas ieskomas simbolis
+        console.log('pozicija ties kuria prasideda zodis "upon"', stringas.lastIndexOf('o'))
+
+        //repeat() pakartoja stringa nurodyta kieki kartu
+        stringas = 'valio!'
+        console.log(stringas.repeat(5))
+
+        let i = 0
+        let rezultatas = ''
+        while (i < 10) {
+            rezultatas += stringas
+            i++
+        }
+        console.log(rezultatas)
+
+        //slice() metodas istraukia dali teksto is norimo stringo pagal nurodytas pozicijas
+        stringas = 'Once upon a time in Hollywood'
+
+        console.log(stringas.slice(10))
+        //pirmas skaicius parodo nuo kur stringas prasideda,antras skaicius parodo kur stringas turi baigtis
+        console.log(stringas.slice(10, 16))
+        //minusine reiksme pradeda nuo galo stringo
+        console.log(stringas.slice(-9))
+
+        //toUpperCase() konvertuoja visas raides i didziasias
+        console.log(stringas.toUpperCase())
+        //toLowerCase() konvertuoja visas raides i mazasias
+        console.log(stringas.toLowerCase())
+        //tarpai stringe trugdo apskaiciuoti pozicija
+        //trim() pasalina tarpus is stringo priekio ir pabaigos
+        stringas = '    Once upon a time in Hollywood      '
+        console.log(stringas)
+        console.log(stringas.trim())
+        //trimStart() pasalina tarpus is stringo priekio
+        //trimEnd() pasalina tarpus is stringo pabaigos
+
+    </script>
+</body>
+</html>
