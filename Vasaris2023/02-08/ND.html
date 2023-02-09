@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>namu darbai 02.08</title>
+</head>
+<body>
+    <script>
+        function rand(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+    // Sumodeliuokite vinies kalimą. Įkalimo gylį sumodeliuokite pasinaudodami rand() funkcija.
+    // Vinies ilgis 8.5cm (pilnai sulenda į lentą).
+
+    // a) “Įkalkite” 5 vinis mažais smūgiais. Vienas smūgis vinį įkala 5-20 mm.
+    // Suskaičiuokite kiek reikia smūgių.
+
+        let nails = 5
+        let string = ''
+
+        while(nails >= 1) {
+            let hits = 0
+            let nailLenght = 85
+            let hitStr = rand(5, 20)
+            while(nailLenght >= 0) {
+                nailLenght = nailLenght - hitStr
+                hits++
+            }
+            string += Math.max(hits) + " "
+            nails--
+        }
+        document.write('Ikalti vini reikes: ', string, 'smugiu')
+
+    // b) “Įkalkite” 5 vinis dideliais smūgiais.
+    // Vienas smūgis vinį įkala 20-30 mm, bet yra 50% tikimybė (pasinaudokite rand() funkcija tikimybei sumodeliuoti),
+    // kad smūgis nepataikys į vinį. Suskaičiuokite kiek reikia smūgių.
+
+        let vinis = 5
+        let string2 = ''
+
+        while(vinis >= 1) {
+            let hits2 = 0
+            nailLenght = 85
+            hitStr = rand(20, 30)
+
+            while(nailLenght >=0) {
+                let chance = rand(0, 1)
+                
+                if(chance = 1) {
+                    nailLenght = nailLenght - hitStr
+                    hits2++
+                }
+            }
+            string2 += Math.max(hits2) + ' '
+            vinis--
+        }
+        document.write('<br>')
+        document.write('Ikalti viny su nepataikymo sansu reikes ', string2, 'smugiu')
+    </script>
+</body>
+</html>
