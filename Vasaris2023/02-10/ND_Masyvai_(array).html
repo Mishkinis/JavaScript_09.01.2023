@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ND Masyvai (array)</title>
+</head>
+<body>
+    <script>
+        function rand(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+        document.write('<h2>pirma uzduotis</h2>')
+        document.write('<br>')
+        //Sugeneruokite masyvą iš 30 elementų (indeksai nuo 0 iki 29),
+        //kurių reikšmės yra atsitiktiniai skaičiai nuo 5 iki 25.
+        
+        let masyvas = []
+
+        for(let i = 0; i < 30; i++) {
+            //masyvas[masyvas.length] = rand(5, 25)
+            masyvas.push(rand(5, 25))
+        }
+        document.write(masyvas)
+
+        //Naudodamiesi 1 uždavinio masyvu:
+        //a) Suskaičiuokite kiek masyve yra reikšmių didesnių už 10;
+        document.write('<br>')
+        document.write('<h2>antra uzduotis</h2>')
+        document.write('<br>')
+
+        //for of ciklas grazina kiekviena masyvo elemento reiksme.
+        //for(let reiksme of masyvas) {
+        //    console.log(reiksme)
+        //}
+        //for in ciklas grazina kiekvieno masyvo elemento indeksa.
+        //        for(let indeksas in masyvas) {
+        //    console.log(reiksme)
+        //}
+
+        let counter = 0
+
+        for(let reiksme of masyvas) {
+            if(reiksme <10)
+                counter++
+        }
+        document.write('<h4>a)</h4>')
+        document.write('reiksmiu didesniu nei desimt yra: ' + counter)
+        //b) Raskite didžiausią masyvo reikšmę ir jos indeksą arba indeksus jeigu yra keli;
+
+        document.write('<h4>b)</h4>')
+
+        let max = 0
+
+        for(let reiksme of masyvas) {
+            if(reiksme > max)
+                max = reiksme
+        }
+
+        document.write('didziausia reiksme: ' + max)
+
+        let indeksai = []
+
+        for(let indeksas in masyvas) {
+            if(masyvas[indeksas] === max)
+                indeksai.push(indeksas)
+        }
+
+        document.write(`<div>Didziausios reiksmes indeksas(-ai): ${indeksai}</div>`)
+
+        //c) Suskaičiuokite visų porinių (lyginių) indeksų reikšmių sumą;
+        document.write('<h4>c)</h4>')
+
+        let suma = 0
+
+        for(let i in masyvas) {
+            if(i % 2 === 0)
+                suma += masyvas[i]
+        }
+
+        document.write(`<div>Lyginiu indeksu reiksmiu suma:  ${suma}</div>`)
+
+        //d) Sukurkite naują masyvą, kurio reikšmės yra 1 uždavinio masyvo reikšmes minus tos reikšmės indeksas;
+
+        //e) Papildykite masyvą papildomais 10 elementų su reikšmėmis nuo 5 iki 25,
+        //kad bendras masyvas padidėtų iki indekso 39;
+
+        //f) Iš masyvo elementų sukurkite du naujus masyvus. Vienas turi būti sudarytas
+        //iš neporinių indeksų reikšmių, o kitas iš porinių;
+
+        //g) Pirminio masyvo elementus su poriniais indeksais padarykite lygius 0 jeigu jie didesni už 15;
+
+        //h) Suraskite pirmą indeksą, kurio elemento reikšmė didesnė už 10;
+
+        //i) Iš masyvo ištrinkite visus elementus turinčius porinį indeksą;
+
+        console.log('trecia uzduotis')
+        //Sugeneruokite masyvą, kurio reikšmės atsitiktinės raidės A, B, C ir D, o ilgis 200.
+        //Suskaičiuokite kiek yra kiekvienos raidės.
+
+    </script>
+</body>
+</html>

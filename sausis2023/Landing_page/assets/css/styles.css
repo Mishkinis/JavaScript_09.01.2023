@@ -732,3 +732,105 @@ section {
 #contacts .contact-form .form-line {
     margin-bottom: 10px;
 }
+
+#page-end {
+    background: url(/sausis2023/Landing_page/assets/Images/footer-light-bg.png);
+    background-color: #343a40;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    padding-top: 80px;
+    padding-bottom: 30px;
+}
+
+#page-end p {
+    color: white;
+}
+
+#p-first {
+    margin-bottom: 0;
+}
+
+#page-end h4 {
+    font-size: 16px;
+    margin-bottom: 16px;
+    color: white;
+}
+
+#page-end h5 {
+    color: white;
+    font-size: 20px;
+}
+
+#page-end li {
+    color: #aeb0af;
+    font-size: 16px;
+}
+
+.end-logo {
+    margin: 0 0 10px;
+}
+
+.left-appexy {
+    width: 25%;
+    padding: 0 12px;
+}
+
+#page-end .end-icons {
+    height: 36px;
+    width: 36px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    font-size: 20px;
+    background-color: #ffffff1a;
+    margin: 0 3px;
+    cursor: pointer;
+}
+
+#page-end .end-icons:hover {
+    background-color: white;
+    color: #1457e1;
+    transition: 0.8s;
+}
+
+.right-appexy {
+    width: 75%;
+    padding-left: 12px;
+}
+
+.end-right-column {
+    width: 22%;
+    margin: 0 12px;
+}
+
+.footer-cont {
+    background-color: #484d53;
+    color: #cdced0;
+}
+
+#page-end .end-icons-cont li {
+    color: white;
+}
+
+#page-end .end-icons-cont {
+    margin-top: 45px;
+    margin-bottom: 16px;
+}
+
+.footer-cont .footer-left {
+    padding-top: 7px;
+    margin-bottom: 0;
+    font-size: 14px;
+}
+
+.footer-cont .footer-right {
+    padding-left: 673px;
+    font-size: 14px;
+    padding-top: 7px;
+}
+
+.footer-cont .footer-left p,
+.footer-right p {
+    margin-bottom: 10px;
+}
