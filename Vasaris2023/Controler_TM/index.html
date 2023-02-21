@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Žaidimų konsolė</title>
+</head>
+<body>
+    <div class="container">
+        <div id="TV" class="TV">
+            <img src="./img/tv.png" alt="telikas">
+        <div id="screen" class="screen">
+            <div id="view" class="off">
+                <h2 class="hello off">Hello and welcome!</h2>
+                <iframe id="iframe" class="off" width="100%" height="315"
+                    src="https://www.youtube.com/embed/y-28CssnqEE" title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+                <div id="table" class="off">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Pavadinimas</th>
+                                <th>Kaina</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div id="remote" class="remote">
+            <img src="./img/joystick.jpeg" alt="remote">
+            <div class="btn-cont">
+                <button onclick=power() class="btn white">Power</button>
+                <button onclick=News() class="btn Y">News</button>
+                <button onclick=Return() class="btn B">Return</button>
+                <button onclick=Shop() class="btn X">Game Shop</button>
+                <button onclick=Google() class="btn A">Google</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="main.js"></script>
+</html>
