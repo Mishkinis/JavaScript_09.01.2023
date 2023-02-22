@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <style>
+        :root {
+            --primary: rgba(43, 20, 220, 0.512);
+            --dark: #0c1221;
+            --darker: #34794d;
+            --light: rgba(255, 255, 255, 0.662);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            font-family: 'Fira sans', sans-serif;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--light);
+        }
+
+        .watch {
+            text-align: center;
+            background-color: var(--darker);
+            width: 100%;
+            max-width: 360px;
+            margin: 4rem auto;
+            padding: 1rem 2rem;
+            border-radius: 1rem;
+        }
+
+        .time {
+            font-size: 5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .controls button {
+            appearance: none;
+            background: none;
+            border: none;
+            outline: none;
+            user-select: none;
+            cursor: pointer;
+            color: var(--light);
+            background-color: var(--primary);
+            margin: 0 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: 0.4s;
+            font-size: 1.2rem;
+        }
+
+        button:hover {
+            opacity: 0.7s;
+        }
+
+        button:active {
+            background-color: var(--dark);
+        }
+    </style>
+</head>
+<body>
+    <div class="watch">
+        <div class="time">
+            00:00:00
+        </div>
+        <div class="controls">
+            <button id="start">Start</button>
+            <button id="stop">Stop</button>
+            <button id="reset">Reset</button>
+        </div>
+    </div>
+    <script>
+        const time_el = document.querySelector('.watch .time')
+        const start_btn = document.getElementById("start")
+        const stop_btn = document.getElementById("stop")
+        const reset_btn = document.getElementById("reset")
+
+        let seconds = 0
+        let interval = null
+
+        start_btn.addEventListener('click', start)
+        stop_btn.addEventListener('click', stop)
+        reset_btn.addEventListener('click', reset)
+
+        function timer() {
+            seconds++
+
+            let hrs = Math.floor(seconds / 3600)
+            let mins = Math.floor((seconds - (hrs * 3600)) / 60)
+            let secs = seconds % 60
+
+            if (secs < 10) secs = '0' + secs
+            if (mins < 10) mins = '0' + mins
+            if (hrs < 10) hrs = '0' + hrs
+
+            time_el.innerText = `${hrs}:${mins}:${secs}`;
+        }
+
+        function start () {
+            if (interval) {
+                return
+            }
+
+            interval = setInterval(timer, 1000)
+        }
+
+        function stop () {
+            clearInterval(interval)
+            interval = null
+        }
+
+        function reset () {
+            stop()
+            seconds = 0
+            time_el.innerText = '00:00:00'
+        }
+    </script>
+</body>
+</html>
