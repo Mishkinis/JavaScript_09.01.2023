@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dienos kokteilis</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <style>
+
+        body {
+            background: rgb(24,24,24);
+            background: linear-gradient(180deg, rgba(24,24,24,1) 0%, rgba(26,41,59,1) 50%, rgba(24,24,24,1) 100%);
+        }
+        
+        img {
+            border-radius: 25%;
+        }
+
+        .container {
+            margin-top: 25px;
+        }
+
+        .single {
+            display: flex;
+            color: white;
+        }
+
+        h1 {
+            color: rgb(121, 121, 121);
+            text-align: center;
+            padding-bottom: 30px;
+        }
+
+        h2 {
+            padding-bottom: 30px;
+        }
+
+        .button {
+            padding-top: 30px;
+            text-align: center;
+        }
+
+        .info {
+            padding-top: 130px;
+            margin-left: 100px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header"><h1>Randomly Generatet Drink</h1></div>
+        <div class="api"></div>
+        <div class="button"><button class="btn btn-outline-light" onclick="cocktail()">Another drink</button></div>
+    </div>
+
+    <script>
+        function cocktail() {
+            fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
+            .then(resp => resp.json())
+            .then(resp => {
+                console.log(resp)
+                const drink = resp.drinks[0]
+                let ingredients = '';
+
+                for(let i = 1; i<= 15; i++){
+                    if(drink['strIngredient' + i] || drink['strMeasure' + i])
+                    ingredients += `<li>
+                        ${drink['strIngredient' + i]}
+                        ${drink['strMeasure' + i] === 'null' ? '' : drink['strMeasure' + i]}
+                        </li>`;
+                }
+
+                let alc = '';
+
+                if(drink.strAlcoholic === 'Alcoholic'){
+                    alc = 'Yes'
+                } else if(drink.strAlcoholic === 'Optional alcohol'){
+                    alc = 'Optional'
+                }
+                else {
+                    alc = 'No'
+                }
+
+                document.querySelector('.api').innerHTML = `
+                <div class="single">
+                    <img src='${drink.strDrinkThumb}'>
+                    <div class="info">
+                        <h2>${drink.strDrink}</h2>
+                        <div class='glass'>
+                            <h4>Glass Type:</h4>    
+                            <p>${drink.strGlass}</p>
+                        </div>
+                        <div class='alcohol'>
+                            <h4>Contains alcohol:</h4>
+                            <p>${alc}</p>
+                        </div>
+                        <div>
+                            <h4>Ingredients:</h4>
+                            <ul>${ingredients}</ul>
+                        </div>
+                    </div>
+                </div>
+                `;
+            })
+        }
+
+        cocktail()
+    </script>
+
+</body>
+</html>
