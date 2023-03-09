@@ -1,0 +1,15 @@
+{
+  "name": "lt-flag-nd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "flag": "node ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.2.0"
+  },
+  "type": "module"
+}
