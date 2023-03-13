@@ -1,0 +1,27 @@
+Pirmas etapas:
+Pasinaudodami faker moduliu (https://www.npmjs.com/package/@faker-js/faker), 
+sugeneruokite stringą kurį sudarytų: vardas, pavardė, slaptažodis, el. pašto adresas, gimtadienis.
+Sukurkite programą kuri generuotų bei papildytų failą "people.txt" su atsitiktinio asmens duomenimis paleidus javascript kodą.
+Kiekvienos eilutės pabaigoje įrašykite raktinę kombinaciją "\n", tam, kad faile išssaugota informacija būtų pridedama iš naujos eilutės.
+
+Antras etapas:
+Praplėskite prieš tai aprašytą programą taip, jog failą pildyti galėtų tik vartotojas su specialiais prisijungimais:
+login: admin
+password: 1234
+
+Nepavykus prisijungti grąžinkite terminale žinutę nuspalvintą raudona spalva: "Neteisingi prisijungimo duomenys".
+Sėkmingai atlikus failo papildymą grąžinkite žinutę: "Duomenys faile sėkmingai išsaugoti".
+
+Trečias etapas:
+Praplėskite programą, sukurdami dvigubą funkcionalumą. Prisijungęs vartotojas turi turėti galimybę
+arba papildyti failo turinį arba peržiūrėti jį (readFile metodas).
+
+Bonus užduotis:
+
+Sukurkite NodeJs programą kuri pasinaudojusi standartiniu moduliu "readline" priimtų šias reikšmes:
+Vardas, Pavardė, Slaptažodis, El. pašto adresas, Gimtadienis.
+Reikšmes perduokite iš terminalo.
+Gautas reikšmes patikrinkite, ar tai nėra tušti stringai ir ar el. pašto adresas yra reikiamo formato.
+Aprašykite programą taip, kad gauta informacija būtų talpinama ir papildoma json faile pavadinimu "registrations.json".
+Klaidos atveju grąžinkite atitinkamas žinutes nuspalvintas raudona spalva. 
+Sėkmingu atveju grąžinkite žinutę nuspalvintą žalia spalva ir tekstu "Registracija sėkminga"
