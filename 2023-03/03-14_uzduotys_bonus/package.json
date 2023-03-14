@@ -1,0 +1,19 @@
+{
+  "name": "03-14_uzduotys_bonus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ."
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
+    "nodemon": "^2.0.21"
+  },
+  "dependencies": {
+    "chalk": "^5.2.0"
+  }
+}
