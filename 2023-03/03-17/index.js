@@ -36,8 +36,6 @@ app.post('/save-post', async (req,res) => {
         let database = await fs.readFile('./database.json', 'utf-8');
     
         database = JSON.parse(database);
-    
-        database.push(req.body);
 
         const mail = req.body.mail;
         const passw = req.body.passw;
