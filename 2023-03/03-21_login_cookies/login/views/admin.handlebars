@@ -1,22 +1,25 @@
-<main style="max-width: 600px; margin: 0 auto">
-    <h2>Naujo vartotojo sukūrimas</h2>
-    <form method="POST">
-        <div class="mb-3">
-            <label>Vardas:</label>
-            <input type="text" name="name" class="form-control" />
-        </div>
-        <div class="mb-3">
-            <label>Pavardė:</label>
-            <input type="text" name="last_name" class="form-control" />
-        </div>
-        <div class="mb-3">
-            <label>El. pašto adresas:</label>
-            <input type="email" name="email" class="form-control" />
-        </div>
-        <div class="mb-3">
-            <label>Slaptažodis:</label>
-            <input type="password" name="password" class="form-control" />
-        </div>
-        <button class="btn btn-primary">Patvirtinti</button>
-    </form>
-</main>
+<h1>Registruoti Vartotojai</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Vardas</th>
+            <th>Pavardė</th>
+            <th>El. pašto adresas</th>
+            <th>Slaptažodis</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+        <tr>
+            <td>{{name}}</td>
+            <td>{{last_name}}</td>
+            <td>{{email}}</td>
+            <td>{{password}}</td>
+            <td>
+                <a href="/delete-user/{{@key}}" class="btn btn-danger">Ištrinti</a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
