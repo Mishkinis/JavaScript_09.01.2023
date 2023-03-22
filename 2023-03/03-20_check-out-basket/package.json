@@ -1,6 +1,7 @@
 {
-  "name": "03-17",
+  "name": "03-20_check-out-basket",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon ."
@@ -8,12 +9,8 @@
   "author": "",
   "license": "ISC",
   "type": "module",
-  "devDependencies": {
-    "nodemon": "^2.0.21"
-  },
   "dependencies": {
     "express": "^4.18.2",
     "express-handlebars": "^7.0.2"
-  },
-  "description": ""
+  }
 }
