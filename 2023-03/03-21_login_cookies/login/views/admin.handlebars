@@ -1,4 +1,7 @@
 <h1>Registruoti Vartotojai</h1>
+{{#if message}}
+<div class="alert alert-danger">{{message}}</div>
+{{/if}}
 <table class="table">
     <thead>
         <tr>
@@ -17,7 +20,10 @@
             <td>{{email}}</td>
             <td>{{password}}</td>
             <td>
+                <a href="/edit-user/{{@key}}" class="btn btn-primary">Redaguoti</a>
+                {{#unless current}}
                 <a href="/delete-user/{{@key}}" class="btn btn-danger">Ištrinti</a>
+                {{/unless}}
             </td>
         </tr>
         {{/each}}

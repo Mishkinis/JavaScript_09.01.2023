@@ -3,7 +3,7 @@
     {{#if message}}
     <div class="alert alert-danger">{{message}}</div>
     {{/if}}
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         <div class="mb-3">
             <label>Vardas:</label>
             <input type="text" name="name" class="form-control" />
@@ -19,6 +19,10 @@
         <div class="mb-3">
             <label>Slaptažodis:</label>
             <input type="password" name="password" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label>Avataras:</label>
+            <input type="file" name="photo" class="form-control" />
         </div>
         <button class="btn btn-primary">Patvirtinti</button>
     </form>
