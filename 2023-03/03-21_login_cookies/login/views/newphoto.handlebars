@@ -1,0 +1,17 @@
+<main style="max-width: 600px; margin: 0 auto">
+    <h2>Naujo vartotojo sukūrimas</h2>
+    {{#if message}}
+    <div class="alert alert-danger">{{message}}</div>
+    {{/if}}
+    <form method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label>Pavadinimas:</label>
+            <input type="text" name="name" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label>Nuotrauka:</label>
+            <input type="file" name="photo" class="form-control" />
+        </div>
+        <button class="btn btn-primary">Patvirtinti</button>
+    </form>
+</main>

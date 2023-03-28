@@ -5,9 +5,12 @@ import session from 'express-session'
 import { auth } from './middleware/auth.js'
 import multer from 'multer'
 
+//CRUD = Create Read Update Delete
+
 const app = express()
 const file = './database.json'
 const uploadsDir = './uploads'
+const gallery = './gallery.json'
 const storage = multer.diskStorage({
     destination: async (req, file, next) => {
         try {
@@ -59,6 +62,9 @@ app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views');
 
+//Failu perdavimo aktyvavimui naudojama kanfiguracine eilute
+app.use('/uploads', express.static('./uploads'))
+
 //prisijungimo forma
 app.get('/login', (req, res) => {
     res.render('login')
@@ -67,13 +73,14 @@ app.get('/login', (req, res) => {
 app.post('/login', async (req, res) => {
     let data = JSON.parse(await fs.readFile(file, 'utf-8'));
 
-    data = data.filter(user => user.email === req.body.email && user.password === req.body.password);
-    if(data.length > 0) {
+    const index = data.findIndex(user => user.email === req.body.email && user.password === req.body.password);
+    if(index != -1) {
         req.session.loggedIn = true;
         req.session.user = {
-            name: data[0].name,
-            last_name: data[0].last_name,
-            email: data[0].email
+            id: index,
+            name: data[index].name,
+            last_name: data[index].last_name,
+            email: data[index].email
         }
         return res.redirect('/');
     }
@@ -136,8 +143,8 @@ app.post('/new-user', auth, upload.single('photo'), async (req, res) => {
 //istrinti vartotoja
 app.get('/delete-user/:id', auth, async (req, res) => {
     const data = JSON.parse(await fs.readFile(file, 'utf-8'))
-    const currentUser = data.findIndex(user => user.email === req.session.user?.email)
-    if(currentUser == req.params.id) {
+    //const currentUser = data.findIndex(user => user.email === req.session.user?.email)
+    if(req.session.user.id == req.params.id) {
         req.session.message = 'Šio vartotojo ištrynimas negalimas'
         return res.redirect('/')
     }
@@ -174,9 +181,66 @@ app.post('/edit-user/:id', auth, async (req, res) => {
     res.redirect('/')
 })
 
+//atsijungimas
 app.get('/logout', auth, (req, res) => {
     req.session.destroy()
     res.redirect('/login')
 })
 
+//konkurso nuotraukos ikelimas
+app.get('/new-photo', auth, upload.single('photo'), async (req, res) => {
+    res.render('newphoto')
+})
+
+app.post('/new-photo', auth, upload.single('photo'), async (req, res) => {
+        if(req.file)
+        req.body.photo = req.file.path.replace('\\','/')
+
+        // const users = JSON.parse(await fs.readFile(file, 'utf-8'))
+        // users.findIndex(user => user.email === req.session.user.email).............................
+        req.body.userId = req.session.body
+        
+    try {
+        let data = JSON.parse(await fs.readFile(gallery, 'utf-8'))
+
+       data.push(req.body)
+       await fs.writeFile(gallery, JSON.stringify(data))
+    
+    } catch {
+        await fs.writeFile(gallery, JSON.stringify([req.body]))
+    }
+
+    res.redirect('/')
+})
+
+app.get('/gallery', async (req, res) => {
+    const galleryData = JSON.parse(await fs.readFile(gallery, 'urf-8'))
+    const userData = JSON.parse(await fs.readFile(file, 'urf-8'))
+
+    for(const index in galleryData) {
+        const userInfo =userData[galleryData[i].userID]
+        galleryData[i].userInfo = userInfo
+
+        galleryData[i].totalRating = 2
+    }
+
+    res.render('gallery', {data: galleryData})
+})
+
+app.post('/gallery/:id', auth, async (req, res) => {
+    const galleryData = JSON.parse(await fs.readFile(gallery, 'urf-8'))
+    const ratingData = {
+        rating: +req.body.rating,
+        userId: req.session.user.id}
+
+    if(!galleryData[req.params.id].ratings) {
+        galleryData[req.params.id].ratings = [ratingData]
+    } else {
+        galleryData[req.params.id].ratings.push(galleryData)
+    }
+
+    await fs.writeFile(gallery, JSON.stringify(galleryData))
+
+    res.redirect('/gallery')
+})
 app.listen(3000)
