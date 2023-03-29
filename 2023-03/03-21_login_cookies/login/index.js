@@ -1,33 +1,37 @@
-import express from 'express'
-import fs from 'node:fs/promises'
-import { engine } from 'express-handlebars'
-import session from 'express-session'
+import express from 'express';
+import fs from 'node:fs/promises';
+import { engine } from 'express-handlebars';
+import session from 'express-session';
 import { auth } from './middleware/auth.js'
-import multer from 'multer'
+import multer from 'multer';
 
-//CRUD = Create Read Update Delete
+//CRUD:
+//CREATE
+//READ
+//UPDATE
+//DELETE
 
-const app = express()
-const file = './database.json'
-const uploadsDir = './uploads'
-const gallery = './gallery.json'
+const app = express();
+const file = './database.json';
+const gallery = './gallery.json';
+const uploadsDir = './uploads';
 const storage = multer.diskStorage({
     destination: async (req, file, next) => {
         try {
-            await fs.access(uploadsDir)
+            await fs.access(uploadsDir);
         } catch {
-            fs.mkdir(uploadsDir)
+            await fs.mkdir(uploadsDir);
         }
 
-        next(null, uploadsDir)
+        next(null, uploadsDir);
     },
     filename: (req, file, next) => {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-        const nameParts = file.originalname.split('.')
-        next(null, uniqueSuffix + '.' + nameParts[nameParts.length - 1])
+        const nameParts = file.originalname.split('.');
+        next(null, uniqueSuffix + '.' + nameParts[nameParts.length - 1]);
     }
-})
-const upload = multer({
+});
+const upload = multer({ 
     storage,
     fileFilter: (req, file, next) => {
         const allowed = [
@@ -36,40 +40,41 @@ const upload = multer({
             'image/png',
             'image/svg+xml',
             'image/webp'
-        ]
+        ];
 
         if(allowed.includes(file.mimetype))
-            next(null, true)
+            next(null, true);
     }
-})
+});
 // app.set('trust proxy', 1);
 
-//sesijos duomenu konfiguracija
+//Sesijos duomenų konfigūracija
 app.use(session({
-    secret: 'labai slapta fraze',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false }
-}))
+  secret: 'LABAI SLAPTA FRAZĖ',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
 
-//konfiguracine eilute kuri yra butina norint POST metodu priimti duomenis
+//Konfigūracinė eilutė kuri yra būtina norint POST metodu priimti duomenis
 app.use(express.urlencoded({
     extended: true
-}))
+}));
 
-//handlebars konfiguracija
+//handlebars konfigūracija
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views');
 
-//Failu perdavimo aktyvavimui naudojama kanfiguracine eilute
-app.use('/uploads', express.static('./uploads'))
+//Failų perdavimo aktyvavimui naudojama konfigūracinė eilutė
+app.use('/uploads', express.static('./uploads'));
 
-//prisijungimo forma
+//Prisijungimo forma
 app.get('/login', (req, res) => {
-    res.render('login')
-})
-//prisijungimo duomenu tikrinimas
+    res.render('login');
+});
+
+//Prisijungimo duomenų tikrinimas
 app.post('/login', async (req, res) => {
     let data = JSON.parse(await fs.readFile(file, 'utf-8'));
 
@@ -88,159 +93,164 @@ app.post('/login', async (req, res) => {
     res.redirect('/login');
 });
 
-//visu vartotoju sarasas
+//Visų vartotojų sąrašas
 app.get('/', auth, async (req, res) => {
-    const data = JSON.parse(await fs.readFile(file, 'utf-8'))
+    const data = JSON.parse(await fs.readFile(file, 'utf8'));
     const modifiedData = data.map(user => {
         if(user.email === req.session.user?.email)
-            user.current = true
+            user.current = true;
 
-        return user
-    })
+        return user;
+    });
 
     res.render('admin', {
         user: req.session.user,
         message: req.session.message,
         data: modifiedData
-    })
+    });
 
-    delete req.session.message
-})
+    delete req.session.message;
+});
 
-//naujo vartotojo forma
+//Naujo vartotojo forma
 app.get('/new-user', auth, (req, res) => {
     res.render('newuser', {
         user: req.session.user,
         message: req.session.message
-    })
+    });
 
-    delete req.session.message
-})
+    delete req.session.message;
+});
 
-//naujo vartotojo issaugojimas
+//Naujo varotojo išsaugojimas
 app.post('/new-user', auth, upload.single('photo'), async (req, res) => {
-    //console.log(req.file.pathreplace('\\','/'))
     if(req.file)
-        req.body.photo = req.file.path.replace('\\','/')
-
+        req.body.photo = req.file.path.replace('\\', '/');
+        
     try {
-        let data = JSON.parse(await fs.readFile(file, 'utf-8'))
-
+        let data = JSON.parse(await fs.readFile(file, 'utf-8'));
+        
         if(data.find(user => user.email === req.body.email)) {
-            req.session.message = 'Vartotojas tokiu el. pašto adresu jau registruotas'
-            return res.redirect('/new-user')
+            req.session.message = 'Vartotojas tokiu el. pašto adresu jau registruotas';
+            return res.redirect('/new-user');
         }
-    
-        data.push(req.body)
-        await fs.writeFile(file, JSON.stringify(data))
+
+        data.push(req.body);
+        await fs.writeFile(file, JSON.stringify(data));
     } catch {
-        await fs.writeFile(file, JSON.stringify([req.body]))
+        await fs.writeFile(file, JSON.stringify([req.body]));
     }
 
-    res.redirect('/')
-})
+    res.redirect('/');
+});
 
-//istrinti vartotoja
 app.get('/delete-user/:id', auth, async (req, res) => {
-    const data = JSON.parse(await fs.readFile(file, 'utf-8'))
-    //const currentUser = data.findIndex(user => user.email === req.session.user?.email)
+    const data = JSON.parse(await fs.readFile(file, 'utf8'));
+    // const currentUser = data.findIndex(user => user.email === req.session.user?.email);
     if(req.session.user.id == req.params.id) {
-        req.session.message = 'Šio vartotojo ištrynimas negalimas'
-        return res.redirect('/')
+        req.session.message = 'Šio vartotojo ištrynimas negalimas';
+        return res.redirect('/');
     }
 
-    data.splice(req.params.id, 1)
-    await fs.writeFile(file, JSON.stringify(data))
+    data.splice(req.params.id, 1);
+    await fs.writeFile(file, JSON.stringify(data));
 
-    res.redirect('/')
-})
+    res.redirect('/');
+});
 
-//redaguoti vartotoja
 app.get('/edit-user/:id', auth, async (req, res) => {
-    const data = JSON.parse(await fs.readFile(file, 'utf-8'))
-    
+    const data = JSON.parse(await fs.readFile(file, 'utf8'));
+
     res.render('edituser', {
         user: req.session.user,
         message: req.session.message,
         currentUser: data[req.params.id]
-    })
-    
-    delete req.session.message
-})
+    });
+
+    delete req.session.message;
+});
 
 app.post('/edit-user/:id', auth, async (req, res) => {
-    const data = JSON.parse(await fs.readFile(file, 'utf-8'))
+    const data = JSON.parse(await fs.readFile(file, 'utf8'));
     if(data.find((user, index) => user.email === req.body.email && index != req.params.id)) {
-        req.session.message = 'Toks el. pašto adresas jau registruotas'
-        return res.redirect('/edit-user/' + req.params.id)
+        req.session.message = 'Toks el. pašto adresas jau registruotras';
+        return res.redirect('/edit-user/' + req.params.id);
     }
-    
-    data[req.params.id] = req.body
-    await fs.writeFile(file, JSON.stringify(data))
 
-    res.redirect('/')
-})
+    if(req.session.user.id == req.params.id) {
+        req.session.user = req.body;
+        console.log(req.session.user);
+    }
 
-//atsijungimas
+    data[req.params.id] = req.body;
+    await fs.writeFile(file, JSON.stringify(data));
+
+    res.redirect('/');
+});
+
 app.get('/logout', auth, (req, res) => {
-    req.session.destroy()
-    res.redirect('/login')
-})
+    req.session.destroy();
+    res.redirect('/login');
+});
 
-//konkurso nuotraukos ikelimas
-app.get('/new-photo', auth, upload.single('photo'), async (req, res) => {
-    res.render('newphoto')
-})
+app.get('/new-photo', auth, (req, res) => {
+    res.render('newphoto');
+});
 
 app.post('/new-photo', auth, upload.single('photo'), async (req, res) => {
-        if(req.file)
-        req.body.photo = req.file.path.replace('\\','/')
-
-        // const users = JSON.parse(await fs.readFile(file, 'utf-8'))
-        // users.findIndex(user => user.email === req.session.user.email).............................
-        req.body.userId = req.session.body
-        
-    try {
-        let data = JSON.parse(await fs.readFile(gallery, 'utf-8'))
-
-       data.push(req.body)
-       await fs.writeFile(gallery, JSON.stringify(data))
+    if(req.file)
+        req.body.photo = req.file.path.replace('\\', '/');
     
+    // const users = JSON.parse(await fs.readFile(file, 'utf-8'));
+    // req.body.userId = users.findIndex(user => user.email === req.session.user.email);
+    req.body.userId = req.session.user.id;
+    
+    try {
+        let data = JSON.parse(await fs.readFile(gallery, 'utf-8'));
+
+        data.push(req.body);
+        await fs.writeFile(gallery, JSON.stringify(data));
     } catch {
-        await fs.writeFile(gallery, JSON.stringify([req.body]))
+        await fs.writeFile(gallery, JSON.stringify([req.body]));
     }
 
-    res.redirect('/')
-})
+    res.redirect('/');
+});
 
-app.get('/gallery', async (req, res) => {
-    const galleryData = JSON.parse(await fs.readFile(gallery, 'urf-8'))
-    const userData = JSON.parse(await fs.readFile(file, 'urf-8'))
+app.get('/gallery', auth, async (req, res) => {
+    const galleryData = JSON.parse(await fs.readFile(gallery, 'utf-8'));
+    const userData = JSON.parse(await fs.readFile(file, 'utf-8'));
 
-    for(const index in galleryData) {
-        const userInfo =userData[galleryData[i].userID]
-        galleryData[i].userInfo = userInfo
+    for(const i in galleryData) {
+        const userInfo = userData[galleryData[i].userId];
+        galleryData[i].userInfo = userInfo;
 
-        galleryData[i].totalRating = 2
+        if(galleryData[i].ratings) {
+            const sum = galleryData[i].ratings.reduce((prev, current) => prev + current.rating, 0);
+            galleryData[i].totalRating = (sum / galleryData[i].ratings.length).toFixed(2);
+        }
     }
 
-    res.render('gallery', {data: galleryData})
-})
+    res.render('gallery', { data: galleryData });
+});
 
 app.post('/gallery/:id', auth, async (req, res) => {
-    const galleryData = JSON.parse(await fs.readFile(gallery, 'urf-8'))
+    // req.params.id
+    const galleryData = JSON.parse(await fs.readFile(gallery, 'utf-8'));
     const ratingData = {
         rating: +req.body.rating,
-        userId: req.session.user.id}
+        userId: req.session.user.id
+    };
 
     if(!galleryData[req.params.id].ratings) {
-        galleryData[req.params.id].ratings = [ratingData]
+        galleryData[req.params.id].ratings = [ratingData];
     } else {
-        galleryData[req.params.id].ratings.push(galleryData)
+        galleryData[req.params.id].ratings.push(ratingData);
     }
 
-    await fs.writeFile(gallery, JSON.stringify(galleryData))
+    await fs.writeFile(gallery, JSON.stringify(galleryData));
 
-    res.redirect('/gallery')
-})
-app.listen(3000)
+    res.redirect('/gallery');
+});
+
+app.listen(3000);
