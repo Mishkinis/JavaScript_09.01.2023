@@ -1,9 +1,8 @@
-export default function TextoDydis({ H1Textas, H2Textas, spalvele }) {
+export default function TextoDydis({ h1, h2 }) {
     return (
         <div>
-            <h1>{H1Textas}</h1>
-            <h2>{H2Textas}</h2>
-            <h1 style={{ color: 'green' }}>{spalvele}</h1>
+            <h1>{h1}</h1>
+            <h2>{h2}</h2>
         </div>
     );
 }
