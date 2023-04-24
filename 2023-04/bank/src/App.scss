@@ -26,12 +26,18 @@
   margin: 2em auto;
   border-collapse: collapse;
 
-  th,
+  th {
+    padding: 0.5em 1em;
+    text-align: center;
+    border: 1px solid;
+    font-weight: 800;
+  }
+
   td {
     padding: 0.5em 1em;
     text-align: center;
-    border-bottom: 1px solid;
-    font-weight: 500;
+    border: 1px solid;
+    font-weight: 600;
   }
 
   .disabled {
@@ -105,7 +111,7 @@
   font-size: large;
   border-radius: 5px;
   padding: 5px;
-  font-weight: 600;
+  font-weight: 800;
 }
 
 .laukelis {
