@@ -1,16 +1,8 @@
-import ZanaBazar from "./ZanaBazar";
-
-export default function Square({ niceColor, letter }) {
+export default function Square({ number }) {
 
     return (
-        <div className="square zana" style={{
-            backgroundColor: niceColor + '70',
-            borderColor: niceColor
-        }}>
-            {
-                letter > 30 ? letter : <ZanaBazar letter={letter} />
-            }
-
+        <div className="square">
+            {number}
         </div>
     );
 }
