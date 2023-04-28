@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Sigmar&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #282c34;
+  margin: 0;
+  font-family: 'Sigmar', cursive;
+}
+
+#root {
+  color: whitesmoke;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.title {
+  text-shadow: 1px 2px 1px #000000;
+  text-align: center;
+}
+
+.box {
+  color: black;
+  background-color: #b3c3e1;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  width: 60rem;
+  max-width: 100%;
+  text-align: center;
+}
+
+.sd {
+  border-bottom: 1px solid;
+}
+
+.joke {
+  border-bottom: 1px solid;
+}
+
+.button {
+  box-shadow: inset 0px 1px 0px 0px #97c4fe;
+  background: linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
+  background-color: #3d94f6;
+  border-radius: 6px;
+  border: 1px solid #337fed;
+  display: inline-block;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  font-family: 'Sigmar', cursive;
+  letter-spacing: 2px;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 50px;
+  text-decoration: none;
+  text-shadow: 1px 2px 1px #000000;
+}
+
+.button:hover {
+  background: linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
+  background-color: #1e62d0;
+}
+
+.button:active {
+  position: relative;
+  top: 1px;
+}
