@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/JavaScript_09.01.2023/static/css/main.60cf4071.css",
+    "main.js": "/JavaScript_09.01.2023/static/js/main.db156ae6.js",
+    "index.html": "/JavaScript_09.01.2023/index.html",
+    "main.60cf4071.css.map": "/JavaScript_09.01.2023/static/css/main.60cf4071.css.map",
+    "main.db156ae6.js.map": "/JavaScript_09.01.2023/static/js/main.db156ae6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.60cf4071.css",
+    "static/js/main.db156ae6.js"
+  ]
+}
