@@ -3,7 +3,7 @@ import { useState } from "react";
 import format from "../Functions/format";
 
 
-export default function SingleAccount({ account, setAccounts, delAccount, addMsg }) {
+export default function SingleAccount({ account, setEditAccounts, delAccount, addMsg }) {
     const [newAmount, setNewAmmount] = useState("");
 
 
@@ -17,9 +17,7 @@ export default function SingleAccount({ account, setAccounts, delAccount, addMsg
 
     const addMoney = () => {
         if (newAmount !== "") {
-            setAccounts((accounts) => {
-                return accounts.map((item) => item.id === account.id ? { ...item, money: item.money + newAmount } : item)
-            });
+            setEditAccounts({ ...account, money: account.money + newAmount });
             addMsg({ type: 'success', text: 'Funds added!' });
             setNewAmmount("");
         }
@@ -28,24 +26,22 @@ export default function SingleAccount({ account, setAccounts, delAccount, addMsg
     const subMoney = () => {
         if (newAmount !== "") {
             if (account.money - newAmount < 0) {
-                addMsg({ type: 'error', text: "This account can't have less than 0€" });
+                addMsg({ type: 'error', text: "Can't be less than 0€" });
                 return;
             }
-            setAccounts((accounts) => {
-                return accounts.map((item) => item.id === account.id ? { ...item, money: item.money - newAmount } : item)
-            });
-            addMsg({ type: 'success', text: 'Funds removed!' });
+            setEditAccounts({ ...account, money: account.money - newAmount });
+            addMsg({ type: 'success', text: 'Funds reduced!' });
             setNewAmmount("");
         }
     };
 
     const handleDel = () => {
         if (account.money > 0) {
-            addMsg({ type: 'error', text: "Cannot delete an account with funds" });
+            addMsg({ type: 'error', text: "Cannot delete account with funds!" });
             return;
         }
         delAccount(account.id);
-        addMsg({ type: "success", text: "Account deleted" });
+        addMsg({ type: "success", text: "Account delete successful!" });
     }
     return (
         <tr>
@@ -53,7 +49,7 @@ export default function SingleAccount({ account, setAccounts, delAccount, addMsg
             <td>{account.name}</td>
             <td>{format(account.money)}</td>
             <td>
-                <CurrencyInput className="laukelis" id="amount" placeholder="Amount" suffix=" &euro;" value={newAmount} onValueChange={(value) => changeAmmount(Number(value))} /><button className="sns" onClick={addMoney}>Add</button><button className="sns" onClick={subMoney}>Reduse</button>
+                <CurrencyInput className="laukelis" id="amount" placeholder="Amount" suffix=" &euro;" value={newAmount} onValueChange={(value) => changeAmmount(Number(value))} /><button className="sns" onClick={addMoney}>Add</button><button className="sns" onClick={subMoney}>Remove</button>
             </td>
             <td>
                 <button className={`sns ${account.money > 0 ? "disabled" : null}`} onClick={handleDel}>Delete</button>

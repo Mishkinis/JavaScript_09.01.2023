@@ -16,7 +16,7 @@ export default function AddAccount({ addAccount, addMsg }) {
         addAccount(name, surname);
         setName("");
         setSurname("");
-        addMsg({ type: 'success', text: 'Account has been created!' });
+        addMsg({ type: 'success', text: 'Account created' });
     }
 
     return (
@@ -29,7 +29,7 @@ export default function AddAccount({ addAccount, addMsg }) {
                 <label className="laukelis" htmlFor="name">Surname</label>
                 <input className="laukelis" required id="surname" onChange={handleSurnameChange} name="surname" value={surname} type="text" />
             </div>
-            <button className="sns">Create new account</button>
+            <button className="mar sns" >Create new account</button>
         </form>
     )
 }
